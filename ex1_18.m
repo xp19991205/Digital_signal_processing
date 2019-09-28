@@ -1,0 +1,11 @@
+h1n=[1,1/2,1/4,1/8,1/16,1/32];
+h2n=ones(1,6);
+h3n=[1/4,1/2,1/4,zeros(1,97)];%这里直接用filter解决，因为对y是1阶不需要用filfic
+h12n=conv(h1n,h2n);
+h12n=[h12n,zeros(1,89)];
+vn=h12n+h3n;
+B4=[1,1];
+A4=[1,-0.9,0.81];
+hn=filter(B4,A4,vn);
+n=0:length(hn)-1;
+stem(n,hn,'.');
